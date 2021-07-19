@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    function:
+      definition: patientDataRawHrSupplier;patientDataRawBpSupplier
+    stream:
+      bindings:
+        patientDataRawHrSupplier-out-0:
+          destination: patient.data.raw.hr
+          # add partition count if we create this
+          producer:
+            partition-count: 2
+        patientDataRawBpSupplier-out-0:
+          destination: patient.data.raw.bp
+          # add partition count if we create this
+          producer:
+            partition-count: 2
+      poller:
+        fixed-delay: 5000
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
+

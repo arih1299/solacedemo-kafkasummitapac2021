@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    function:
+      definition: patientDataRawHrFunction;patientDataRawBpFunction
+    stream:
+      bindings:
+        patientDataRawHrFunction-in-0:
+          destination: patient.data.raw.hr
+          # add group
+          group: patientDataHRGroup
+          consumer:
+            concurrency: 3
+        patientDataRawHrFunction-out-0:
+          destination: patient.data.calculated.hr
+          # add partition count if we create this
+          producer:
+            partition-count: 2
+        patientDataRawBpFunction-in-0:
+          destination: patient.data.raw.bp
+          # add group
+          group: patientDataBPGroup
+          consumer:
+            concurrency: 3
+        patientDataRawBpFunction-out-0:
+          destination: patient.data.calculated.bp
+          # add partition count if we create this
+          producer:
+            partition-count: 2
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
