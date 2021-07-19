@@ -3,6 +3,11 @@ spring:
     function:
       definition: patientDataRawHrFunction;patientDataRawBpFunction
     stream:
+      # Kafka brokers details if needed
+      # kafka:
+      #   binder:
+      #     brokers: localhost
+      #     defaultBrokerPort: 9092
       bindings:
         patientDataRawHrFunction-in-0:
           destination: patient.data.raw.hr
