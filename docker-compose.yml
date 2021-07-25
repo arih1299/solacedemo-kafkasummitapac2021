@@ -1,0 +1,96 @@
+version: "3"
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: 'bitnami/zookeeper:3.7.0'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    container_name: kafka
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+  solace_connectors:
+    container_name: solkcon
+    image: solkcon:1.0
+    ports:
+      - '8083:8083'
+    # environment:
+    depends_on:
+      - kafka
+  discovery_agent:
+    container_name: discovery_agent
+    image: 'solaceclouddev.azurecr.io/maas-event-discovery-agent:latest'
+    ports:
+      - '8120:8120'
+    environment:
+      - EVENT_DISCOVERY_OFFLINE=true
+      - MAAS_VMR_ENABLED=false
+      - MAAS_HEARTBEATS_ENABLED=false
+      - MAAS_RESTPROXY_GATEWAY=false
+  solace:
+    container_name: solace
+    image: solace/solace-pubsub-standard:latest
+    shm_size: 1g
+    ulimits:
+      core: 1
+      nofile:
+        soft: 2448
+        hard: 6592
+    ports:
+    #Port Mappings:  Ports are mapped straight through from host to
+    #container.  This may result in port collisions on commonly used
+    #ports that will cause failure of the container to start.
+      #Web transport
+      - '8008:8008'
+      #Web transport over TLS
+      #- '1443:1443'
+      #SEMP over TLS
+      #- '1943:1943'
+      #MQTT Default VPN
+      - '1883:1883'
+      #AMQP Default VPN over TLS
+      #- '5671:5671'
+      #AMQP Default VPN
+      - '5672:5672'
+      #MQTT Default VPN over WebSockets
+      - '8000:8000'
+      #MQTT Default VPN over WebSockets / TLS
+      #- '8443:8443'
+      #MQTT Default VPN over TLS
+      #- '8883:8883'
+      #SEMP / PubSub+ Manager
+      - '8080:8080'
+      #REST Default VPN
+      - '9000:9000'
+      #REST Default VPN over TLS
+      #- '9443:9443'
+      #SMF
+      # - '55555:55555'
+      - '5555:55555' # 55555 is reserved in Big Sur macOS
+      #SMF over TLS
+      #- '55443:55443'
+      #SSH connection to CLI
+      - '2222:2222'
+    environment:
+      - username_admin_globalaccesslevel=admin
+      - username_admin_password=admin
+      - system_scaling_maxconnectioncount=1000
+      - messagespool_maxspoolusage=10000
+      # my additional flags
+      - logging_event_output=all
+      - logging_event_format=legacy
+    # deploy:
+    #   restart_policy:
+    #     condition: on-failure
+    #     max_attempts: 1

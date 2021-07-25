@@ -3,6 +3,17 @@
 **Setting Up**
 
 1. Register with Solace Cloud at https://console.solace.cloud/
-2. Create a Solace PubSub+ event broker at https://console.solace.cloud/services 
-3. Run your local Solace Discovery Agent with instructions available at https://console.solace.cloud/event-discovery
-4. Run a fresh Kafka broker
+2. Build the Solace Kafka Connectors container
+```
+$ cd my-solace-kafka-connectors
+$ docker build --tag solkcon:1.0 .
+```
+3. Get Solace Discovery Agent image
+```
+echo 'cMopz4m+GV60hBb8DysZna8uMP4tM84P' | docker login --username discovery-preview --password cMopz4m+GV60hBb8DysZna8uMP4tM84P solaceclouddev.azurecr.io
+docker pull solaceclouddev.azurecr.io/maas-event-discovery-agent:latest
+```
+4. Run the demo containers
+```
+$ docker compose up
+```
