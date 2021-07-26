@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 
@@ -17,6 +18,36 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class);
+	}
+
+	@Bean
+	public Supplier<ChatMessageSchema> chatMsgSupplier() {
+		return () -> {
+			// Add business logic here.
+			return new ChatMessageSchema(
+				"2011-07-27T20:20:39+00:00",
+				"doctor-54321",
+				"patient-12345",
+				"msg-12345",
+				"Hi doctor, I'm a bit sick :("
+			);
+		};
+	}
+
+	@Bean
+	public Consumer<ChatMessageSchema> chatMsgConsumer() {
+		return data -> {
+			// Add business logic here.	
+			logger.info(data.toString());
+		};
+	}
+
+	@Bean
+	public Consumer<PatientAlertSchema> alertPatientConsumer() {
+		return data -> {
+			// Add business logic here.	
+			logger.info(data.toString());
+		};
 	}
 
 	@Bean

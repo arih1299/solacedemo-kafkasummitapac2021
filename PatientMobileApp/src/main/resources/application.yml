@@ -1,7 +1,8 @@
 spring:
   cloud:
     function:
-      definition: patientDataRawHrSupplier;patientDataRawBpSupplier
+      # definition: chatMsgSupplier;chatMsgConsumer;alertPatientConsumer;patientDataRawHrSupplier;patientDataRawBpSupplier
+      definition: chatMsgSupplier;chatMsgConsumer;patientDataRawHrSupplier;patientDataRawBpSupplier
     stream:
       # Kafka brokers details if needed
       # kafka:
@@ -9,6 +10,14 @@ spring:
       #     brokers: localhost
       #     defaultBrokerPort: 9092
       bindings:
+        chatMsgSupplier-out-0:
+          destination: chat.patient.12345
+        chatMsgConsumer-in-0:
+          destination: chat.doctor.54321
+        # alertPatientConsumer-in-0:
+        #   destination: alert.patient.12345
+        #   # add group
+        #   group: patientAlertPatientGroup
         patientDataRawHrSupplier-out-0:
           destination: patient.data.raw.hr
           # add partition count if we create this
