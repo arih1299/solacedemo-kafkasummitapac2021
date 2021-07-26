@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 // import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.function.Function;
 
 
@@ -35,6 +36,19 @@ public class Application {
 	// 	};
 	// }
 
+
+	@Bean
+	public Supplier<PatientAlertSchema> alertPatientSupplier() {
+		return () -> {
+			// Add business logic here.
+			return new PatientAlertSchema(
+				"2011-07-27T20:20:39+00:00",
+				"Patient is having an emergency .......",
+				"patient-12345",
+				"msg-12345"
+			);
+		};
+	}
 
 	/*
 		Manual changes - change this to a SCS processor, take raw and send calc for each raw data receieved.

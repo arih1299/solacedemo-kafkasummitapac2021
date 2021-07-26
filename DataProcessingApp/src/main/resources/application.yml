@@ -1,7 +1,7 @@
 spring:
   cloud:
     function:
-      definition: patientDataRawHrFunction;patientDataRawBpFunction
+      definition: alertPatientSupplier;patientDataRawHrFunction;patientDataRawBpFunction
     stream:
       # Kafka brokers details if needed
       # kafka:
@@ -9,12 +9,14 @@ spring:
       #     brokers: localhost
       #     defaultBrokerPort: 9092
       bindings:
+        alertPatientSupplier-out-0:
+          destination: alert.patient.12345
         patientDataRawHrFunction-in-0:
           destination: patient.data.raw.hr
           # add group
           group: patientDataHRGroup
           consumer:
-            concurrency: 3
+            concurrency: 2
         patientDataRawHrFunction-out-0:
           destination: patient.data.calculated.hr
           # add partition count if we create this
@@ -25,12 +27,14 @@ spring:
           # add group
           group: patientDataBPGroup
           consumer:
-            concurrency: 3
+            concurrency: 2
         patientDataRawBpFunction-out-0:
           destination: patient.data.calculated.bp
           # add partition count if we create this
           producer:
             partition-count: 2
+      poller:
+        fixed-delay: 15000
 logging:
   level:
     root: info
