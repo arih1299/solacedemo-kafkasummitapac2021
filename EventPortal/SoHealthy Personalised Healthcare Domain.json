@@ -1,0 +1,508 @@
+{
+  "applicationDomains": [
+    {
+      "createdTime": 1627362360133,
+      "updatedTime": 1627362360133,
+      "createdBy": "o8g5ne0tziv",
+      "changedBy": "o8g5ne0tziv",
+      "id": "g9g0vj2p1cy",
+      "name": "SoHealthy Personalised Healthcare",
+      "topicDomain": "sh/ph",
+      "description": "<p>SoHealthy is a fictional company for demo purpose.</p><p>This application domain is to showcase a personalised healthcare systems developed by SoHealthy.</p>",
+      "enforceUniqueTopicNames": true,
+      "schemas": [
+        {
+          "createdTime": 1627362360136,
+          "updatedTime": 1627362360136,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "jmilmi4qied",
+          "name": "PatientHeartRateSchema",
+          "shared": true,
+          "description": "",
+          "contentType": "JSON",
+          "content": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "versions": [
+            {
+              "createdTime": 1627362360136,
+              "updatedTime": 1627362360136,
+              "createdBy": "o8g5ne0tziv",
+              "changedBy": "o8g5ne0tziv",
+              "id": "gusglp7e7vl",
+              "schemaId": "jmilmi4qied",
+              "name": "1",
+              "versionNumber": "1",
+              "content": "{\n  \"$id\": \"https://example.com/arrays.schema.json\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"description\": \"A representation of a patient data heart rate data message\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"messageId\": {\n      \"type\": \"string\",\n      \"description\": \"Message reference id\"\n    },\n    \"dateTime\": {\n      \"type\": \"string\",\n      \"description\": \"Data timestamp sending\"\n    },\n    \"patientId\": {\n      \"type\": \"string\",\n      \"description\": \"Id of the patient\"\n    },\n    \"heartRatePerMinute\": {\n      \"type\": \"integer\",\n      \"minimum\": 0,\n      \"maximum\": 250,\n      \"description\": \"Current heart rate beats per minute of the patient\"\n    }\n  }\n}",
+              "schemaRegistryId": "",
+              "revisionNumber": 1,
+              "type": "schemaVersion"
+            }
+          ],
+          "type": "schema"
+        },
+        {
+          "createdTime": 1627362360136,
+          "updatedTime": 1627362360136,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "b3c9gq017qk",
+          "name": "PatientBloodPressureSchema",
+          "shared": true,
+          "description": "",
+          "contentType": "JSON",
+          "content": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "versions": [
+            {
+              "createdTime": 1627362360136,
+              "updatedTime": 1627362360136,
+              "createdBy": "o8g5ne0tziv",
+              "changedBy": "o8g5ne0tziv",
+              "id": "00l91754bic",
+              "schemaId": "b3c9gq017qk",
+              "name": "1",
+              "versionNumber": "1",
+              "content": "{\n  \"$id\": \"https://example.com/arrays.schema.json\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"description\": \"A representation of a patient blood pressure message\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"messageId\": {\n      \"type\": \"string\",\n      \"description\": \"Message reference id\"\n    },\n    \"dateTime\": {\n      \"type\": \"string\",\n      \"description\": \"Sending date and time\"\n    },\n    \"patientId\": {\n      \"type\": \"string\",\n      \"description\": \"Id of the patient\"\n    },\n    \"bloodPressure\": {\n      \"type\": \"integer\",\n      \"minimum\": 0,\n      \"maximum\": 200,\n      \"description\": \"Current blood pressure of the patient\"\n    }\n  }\n}",
+              "schemaRegistryId": "",
+              "revisionNumber": 1,
+              "type": "schemaVersion"
+            }
+          ],
+          "type": "schema"
+        },
+        {
+          "createdTime": 1627362748149,
+          "updatedTime": 1627362882931,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "q0r9d3q88h2",
+          "name": "PatientAlertSchema",
+          "shared": true,
+          "description": "<p>Patient Alert event</p>",
+          "contentType": "JSON",
+          "content": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 3,
+          "versions": [
+            {
+              "createdTime": 1627362748149,
+              "updatedTime": 1627362832958,
+              "createdBy": "o8g5ne0tziv",
+              "changedBy": "o8g5ne0tziv",
+              "id": "rp8oiib8a06",
+              "schemaId": "q0r9d3q88h2",
+              "name": "1",
+              "versionNumber": "1",
+              "content": "{\n  \"$id\": \"https://example.com/arrays.schema.json\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"description\": \"An alert of a patient condition\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"messageId\": {\n      \"type\": \"string\",\n      \"description\": \"Message reference id\"\n    },\n    \"dateTime\": {\n      \"type\": \"string\",\n      \"description\": \"Data timestamp sending\"\n    },\n    \"patientId\": {\n      \"type\": \"string\",\n      \"description\": \"Id of the patient\"\n    },\n    \"alertMessage\": {\n      \"type\": \"string\",\n      \"description\": \"The details of the emergency of the patient\"\n    }\n  }\n}",
+              "schemaRegistryId": "",
+              "revisionNumber": 2,
+              "type": "schemaVersion"
+            }
+          ],
+          "type": "schema"
+        },
+        {
+          "createdTime": 1627362706532,
+          "updatedTime": 1627362866849,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "caegohwcqv2",
+          "name": "ChatMessageSchema",
+          "shared": true,
+          "description": "",
+          "contentType": "JSON",
+          "content": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 2,
+          "versions": [
+            {
+              "createdTime": 1627362706532,
+              "updatedTime": 1627362706532,
+              "createdBy": "o8g5ne0tziv",
+              "changedBy": "o8g5ne0tziv",
+              "id": "029b5tggo6f",
+              "schemaId": "caegohwcqv2",
+              "name": "1",
+              "versionNumber": "1",
+              "content": "{\n  \"$id\": \"https://example.com/arrays.schema.json\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"description\": \"A chat message between doctor and patient mobile app\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"messageId\": {\n      \"type\": \"string\",\n      \"description\": \"Message reference id\"\n    },\n    \"dateTime\": {\n      \"type\": \"string\",\n      \"description\": \"Data timestamp sending\"\n    },\n    \"senderId\": {\n      \"type\": \"string\",\n      \"description\": \"Id of the sender\"\n    },\n    \"receiverId\": {\n      \"type\": \"string\",\n      \"description\": \"Id of the receiver\"\n    },\n    \"chatMessage\": {\n      \"type\": \"string\",\n      \"description\": \"the chat message content\"\n    }\n  }\n}",
+              "schemaRegistryId": "",
+              "revisionNumber": 1,
+              "type": "schemaVersion"
+            }
+          ],
+          "type": "schema"
+        }
+      ],
+      "events": [
+        {
+          "createdTime": 1627362360155,
+          "updatedTime": 1627362360155,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "6l08r5pqc8i",
+          "name": "PatientBloodPressureEvent",
+          "version": "0.0.1",
+          "shared": true,
+          "description": "<p>Raw data from blood pressure sensor with the patient which then pushed to SoHealthy server by the Patient mobile app.</p>",
+          "schemaId": "b3c9gq017qk",
+          "schemaVersionId": null,
+          "keySchemaId": null,
+          "keySchemaVersionId": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "keyPrimitivePayloadType": "STRING",
+          "valuePrimitivePayloadType": null,
+          "topicAddress": {
+            "id": "n54b3c7z0e9",
+            "virtualBrokerId": "tpx803wutjd",
+            "topicAddressLevels": [
+              {
+                "id": "588d0xcb356",
+                "consumable": false,
+                "name": "patient",
+                "displayName": "patient",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "6c8rzgjvm9j",
+                "consumable": false,
+                "name": "data",
+                "displayName": "data",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "j8a75i9qd5r",
+                "consumable": false,
+                "name": "raw",
+                "displayName": "raw",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "vxdnpthejn4",
+                "consumable": true,
+                "name": "bp",
+                "displayName": "bp",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              }
+            ],
+            "type": "topicAddress"
+          },
+          "type": "event"
+        },
+        {
+          "createdTime": 1627362360148,
+          "updatedTime": 1627362360148,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "3iohvz4fun4",
+          "name": "PatientHeartRateEvent",
+          "version": "0.0.1",
+          "shared": true,
+          "description": "<p>Raw data from any sensors with the patient which then pushed to SoHealthy server by the Patient mobile app.</p>",
+          "schemaId": "jmilmi4qied",
+          "schemaVersionId": null,
+          "keySchemaId": null,
+          "keySchemaVersionId": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "keyPrimitivePayloadType": "STRING",
+          "valuePrimitivePayloadType": null,
+          "topicAddress": {
+            "id": "yff0dtlcid3",
+            "virtualBrokerId": "tpx803wutjd",
+            "topicAddressLevels": [
+              {
+                "id": "588d0xcb356",
+                "consumable": false,
+                "name": "patient",
+                "displayName": "patient",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "6c8rzgjvm9j",
+                "consumable": false,
+                "name": "data",
+                "displayName": "data",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "j8a75i9qd5r",
+                "consumable": false,
+                "name": "raw",
+                "displayName": "raw",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "ba9crii2urm",
+                "consumable": true,
+                "name": "hr",
+                "displayName": "hr",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              }
+            ],
+            "type": "topicAddress"
+          },
+          "type": "event"
+        },
+        {
+          "createdTime": 1627363056041,
+          "updatedTime": 1627363056041,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "db684iv92ft",
+          "name": "PatientAlertEvent",
+          "version": "0.0.1",
+          "shared": true,
+          "description": "<p>A patient alert event</p>",
+          "schemaId": "q0r9d3q88h2",
+          "schemaVersionId": "rp8oiib8a06",
+          "keySchemaId": null,
+          "keySchemaVersionId": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "keyPrimitivePayloadType": "STRING",
+          "valuePrimitivePayloadType": null,
+          "topicAddress": {
+            "id": "909yrhon7g4",
+            "virtualBrokerId": "tpx803wutjd",
+            "topicAddressLevels": [
+              {
+                "id": "ppwtj71g62c",
+                "consumable": false,
+                "name": "alert",
+                "displayName": "alert",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              },
+              {
+                "id": "5tss062innq",
+                "consumable": true,
+                "name": "patient",
+                "displayName": "patient",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              }
+            ],
+            "type": "topicAddress"
+          },
+          "type": "event"
+        },
+        {
+          "createdTime": 1627362986562,
+          "updatedTime": 1627362986562,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "alf4d58dekj",
+          "name": "ChatMessageEvent",
+          "version": "0.0.1",
+          "shared": false,
+          "description": "<p>A chat event between patient and doctor mobile app</p>",
+          "schemaId": "caegohwcqv2",
+          "schemaVersionId": "029b5tggo6f",
+          "keySchemaId": null,
+          "keySchemaVersionId": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "revisionNumber": 1,
+          "keyPrimitivePayloadType": "STRING",
+          "valuePrimitivePayloadType": null,
+          "topicAddress": {
+            "id": "bt1gdutowv5",
+            "virtualBrokerId": "tpx803wutjd",
+            "topicAddressLevels": [
+              {
+                "id": "qbbbbrjsmyp",
+                "consumable": true,
+                "name": "chat",
+                "displayName": "chat",
+                "description": "",
+                "children": [],
+                "topicNodeType": "literal",
+                "type": "topicNode"
+              }
+            ],
+            "type": "topicAddress"
+          },
+          "type": "event"
+        }
+      ],
+      "applications": [
+        {
+          "createdTime": 1627363164189,
+          "updatedTime": 1627363164993,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "at7nzy1hpsr",
+          "name": "solaceSinkConnector",
+          "version": "0.0.1",
+          "description": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "producedEventIds": [],
+          "consumedEventIds": [],
+          "revisionNumber": 2,
+          "applicationClass": "kafka_connector",
+          "endpoints": [],
+          "connectorType": "sink",
+          "clusterId": null,
+          "connectorClass": "com.solace.connector.kafka.connect.sink.SolaceSinkConnector",
+          "configurationParameters": {},
+          "type": "application"
+        },
+        {
+          "createdTime": 1627363164189,
+          "updatedTime": 1627363164189,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "83f8e66w3xf",
+          "name": "solaceSourceConnector",
+          "version": "0.0.1",
+          "description": null,
+          "applicationDomainId": "g9g0vj2p1cy",
+          "producedEventIds": [],
+          "consumedEventIds": [],
+          "revisionNumber": 1,
+          "applicationClass": "kafka_connector",
+          "endpoints": [],
+          "connectorType": "source",
+          "clusterId": null,
+          "connectorClass": "com.solace.connector.kafka.connect.source.SolaceSourceConnector",
+          "configurationParameters": {},
+          "type": "application"
+        },
+        {
+          "createdTime": 1627362360171,
+          "updatedTime": 1627363089484,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "2q6u05o296x",
+          "name": "PatientDataProcessor",
+          "version": "0.0.1",
+          "description": "<p>Receives raw data from patients and do some processing on it.</p>",
+          "applicationDomainId": "g9g0vj2p1cy",
+          "producedEventIds": [
+            "db684iv92ft"
+          ],
+          "consumedEventIds": [
+            "3iohvz4fun4",
+            "6l08r5pqc8i"
+          ],
+          "revisionNumber": 2,
+          "applicationClass": "unspecified",
+          "endpoints": [
+            {
+              "consumedEventIds": [],
+              "topicSubscriptions": [],
+              "name": "PatientBloodPressureGroup",
+              "virtualBrokerId": "tpx803wutjd",
+              "simpleConsumerGroup": true,
+              "endpointType": "kafkaConsumerGroup"
+            },
+            {
+              "consumedEventIds": [],
+              "topicSubscriptions": [],
+              "name": "PatientHeartRateGroup",
+              "virtualBrokerId": "tpx803wutjd",
+              "simpleConsumerGroup": true,
+              "endpointType": "kafkaConsumerGroup"
+            }
+          ],
+          "type": "application"
+        },
+        {
+          "createdTime": 1627362450535,
+          "updatedTime": 1627386070171,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "ciojv0behsq",
+          "name": "DoctorMobileApp",
+          "version": "0.0.1",
+          "description": "<p>Doctors' mobile application:</p><ul><li>chat with patients</li><li>receive alert about patients emergency</li></ul>",
+          "applicationDomainId": "g9g0vj2p1cy",
+          "producedEventIds": [
+            "alf4d58dekj"
+          ],
+          "consumedEventIds": [
+            "alf4d58dekj",
+            "db684iv92ft"
+          ],
+          "revisionNumber": 5,
+          "applicationClass": "unspecified",
+          "endpoints": [],
+          "type": "application"
+        },
+        {
+          "createdTime": 1627362360171,
+          "updatedTime": 1627363103563,
+          "createdBy": "o8g5ne0tziv",
+          "changedBy": "o8g5ne0tziv",
+          "id": "3j6e7vvwqji",
+          "name": "PatientMobileApp",
+          "version": "0.0.1",
+          "description": "<p>SoHealthy patient mobile app.</p><ul><li>sends health metrics such as heart rate to SoHealthy server.</li><li>receive alerts from SoHealthy server.</li><li>chat with doctors (planned feature)</li></ul>",
+          "applicationDomainId": "g9g0vj2p1cy",
+          "producedEventIds": [
+            "3iohvz4fun4",
+            "6l08r5pqc8i",
+            "alf4d58dekj"
+          ],
+          "consumedEventIds": [
+            "alf4d58dekj"
+          ],
+          "revisionNumber": 2,
+          "applicationClass": "unspecified",
+          "endpoints": [],
+          "type": "application"
+        }
+      ],
+      "type": "applicationDomain"
+    }
+  ],
+  "virtualBrokers": [
+    {
+      "createdTime": 1627362360129,
+      "updatedTime": 1627362360129,
+      "createdBy": "o8g5ne0tziv",
+      "changedBy": "o8g5ne0tziv",
+      "id": "tpx803wutjd",
+      "name": "SoHealthyDemo",
+      "description": "",
+      "brokerType": "kafka",
+      "levelDelimiter": ".",
+      "topicNodes": [],
+      "type": "virtualBroker"
+    }
+  ],
+  "topicValueSets": [],
+  "formatVersion": "1",
+  "type": "ApplicationDomainExport"
+}
