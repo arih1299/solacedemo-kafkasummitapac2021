@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "44824719-c486-430e-a326-75d45549e8c9",
+		"name": "Solace Queue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create queue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"queueName\": \"q_kafka_test_1\",\n    \"accessType\": \"non-exclusive\",\n    \"egressEnabled\": true,\n    \"ingressEnabled\": true,\n    \"permission\": \"delete\",\n    \"maxMsgSpoolUsage\": 100,\n    \"respectMsgPriorityEnabled\": true,\n    \"respectTtlEnabled\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/SEMP/v2/config/msgVpns/default/queues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SEMP",
+						"v2",
+						"config",
+						"msgVpns",
+						"default",
+						"queues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create queue subscription",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"subscriptionTopic\": \"ks/>\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/SEMP/v2/config/msgVpns/default/queues/q_kafka_test_1/subscriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SEMP",
+						"v2",
+						"config",
+						"msgVpns",
+						"default",
+						"queues",
+						"q_kafka_test_1",
+						"subscriptions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

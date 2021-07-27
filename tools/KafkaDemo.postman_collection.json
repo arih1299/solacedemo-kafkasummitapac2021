@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "b8227aad-7adb-4874-96c1-9a2cadc6f9e8",
+		"name": "KafkaDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Connectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connector-plugins",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connector-plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status Source",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/solaceSourceConnector/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"solaceSourceConnector",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status Sink",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/solaceSinkConnector/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"solaceSinkConnector",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Source Connector",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"solaceSourceConnector\",\n\t\"config\": {\n    \"name\": \"solaceSourceConnector\",\n    \"connector.class\": \"com.solace.connector.kafka.connect.source.SolaceSourceConnector\",\n    \"tasks.max\": \"1\",\n    \"kafka.topic\": \"demo.solace.source\",\n    \"sol.host\": \"tcp://solace:55555\",\n    \"sol.username\": \"default\",\n    \"sol.password\": \"default\",\n    \"sol.vpn_name\": \"default\",\n    \"sol.queue\": \"q_kafka_test_1\",\n    \"sol.message_processor_class\": \"com.solace.connector.kafka.connect.source.msgprocessors.SolSampleSimpleMessageProcessor\",\n    \"value.converter\": \"org.apache.kafka.connect.converters.ByteArrayConverter\",\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\"\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sink Connector",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"solaceSinkConnector\",\n\t\"config\": {\n\t\t\"connector.class\": \"com.solace.connector.kafka.connect.sink.SolaceSinkConnector\",\n\t\t\"tasks.max\": \"1\",\n\t\t\"key.converter\": \"org.apache.kafka.connect.converters.ByteArrayConverter\",\n\t\t\"value.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\n\t\t\"group.id\": \"solSinkConnectorGroup\",\n\t\t\"topics\": \"demo.solace.sink\",\n\t\t\"sol.host\": \"tcp://solace:55555\",\n\t\t\"sol.username\": \"default\",\n\t\t\"sol.password\": \"default\",\n\t\t\"sol.vpn_name\": \"default\",\n\t\t\"sol.topics\": \"ks/fromkafka\",\n\t\t\"sol.record_processor_class\": \"com.solace.connector.kafka.connect.sink.recordprocessor.SolSimpleRecordProcessor\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
