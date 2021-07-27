@@ -1,0 +1,76 @@
+components:
+  schemas:
+    PatientAlertSchema:
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      description: An alert on patient's health
+      type: object
+      properties:
+        dateTime:
+          description: Data timestamp sending
+          type: string
+        alertMessage:
+          description: The alert content.
+          type: string
+        patientId:
+          description: Id of the patient
+          type: string
+        messageId:
+          description: Message reference id
+          type: string
+      $id: 'https://example.com/arrays.schema.json'
+    ChatMessageSchema:
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      description: A chat message between patient and doctor mobile apps
+      type: object
+      properties:
+        dateTime:
+          description: Chat message timestamp
+          type: string
+        senderId:
+          description: Id of the sender
+          type: string
+        receiverId:
+          description: Id of the receiver
+          type: string
+        messageId:
+          description: Message reference id
+          type: string
+        chatMessage:
+          description: the chat message
+          type: string
+      $id: 'https://example.com/arrays.schema.json'
+  messages:
+    ChatMessageEvent:
+      payload:
+        $ref: '#/components/schemas/ChatMessageSchema'
+      bindings:
+        kafka:
+          key:
+            type: string
+      schemaFormat: application/vnd.aai.asyncapi+json;version=2.0.0
+      contentType: application/json
+    PatientAlertEvent:
+      payload:
+        $ref: '#/components/schemas/PatientAlertSchema'
+      bindings:
+        kafka:
+          key:
+            type: string
+      schemaFormat: application/vnd.aai.asyncapi+json;version=2.0.0
+      contentType: application/json
+channels:
+  chat.msg:
+    subscribe:
+      message:
+        $ref: '#/components/messages/ChatMessageEvent'
+    publish:
+      message:
+        $ref: '#/components/messages/ChatMessageEvent'
+  alert.patient:
+    publish:
+      message:
+        $ref: '#/components/messages/PatientAlertEvent'
+asyncapi: 2.0.0
+info:
+  title: DoctorMobileApp
+  version: 0.0.1

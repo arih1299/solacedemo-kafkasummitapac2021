@@ -1,0 +1,115 @@
+components:
+  schemas:
+    PatientBloodPressureSchema:
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      description: A representation of a patient blood pressure message
+      type: object
+      properties:
+        dateTime:
+          description: Sending date and time
+          type: string
+        bloodPressure:
+          maximum: 200
+          description: Current blood pressure of the patient
+          type: integer
+          minimum: 0
+        patientId:
+          description: Id of the patient
+          type: string
+        messageId:
+          description: Message reference id
+          type: string
+      $id: 'https://example.com/arrays.schema.json'
+    PatientAlertSchema:
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      description: An alert on patient's health
+      type: object
+      properties:
+        dateTime:
+          description: Data timestamp sending
+          type: string
+        alertMessage:
+          description: The alert content.
+          type: string
+        patientId:
+          description: Id of the patient
+          type: string
+        messageId:
+          description: Message reference id
+          type: string
+      $id: 'https://example.com/arrays.schema.json'
+    PatientHeartRateSchema:
+      $schema: 'http://json-schema.org/draft-07/schema#'
+      description: A representation of a patient data heart rate data message
+      type: object
+      properties:
+        dateTime:
+          description: Data timestamp sending
+          type: string
+        patientId:
+          description: Id of the patient
+          type: string
+        messageId:
+          description: Message reference id
+          type: string
+        heartRatePerMinute:
+          maximum: 250
+          description: Current heart rate beats per minute of the patient
+          type: integer
+          minimum: 0
+      $id: 'https://example.com/arrays.schema.json'
+  messages:
+    PatientBloodPressureEvent:
+      payload:
+        $ref: '#/components/schemas/PatientBloodPressureSchema'
+      bindings:
+        kafka:
+          key:
+            type: string
+      schemaFormat: application/vnd.aai.asyncapi+json;version=2.0.0
+      contentType: application/json
+    PatientHeartRateEvent:
+      payload:
+        $ref: '#/components/schemas/PatientHeartRateSchema'
+      bindings:
+        kafka:
+          key:
+            type: string
+      schemaFormat: application/vnd.aai.asyncapi+json;version=2.0.0
+      contentType: application/json
+    PatientAlertEvent:
+      payload:
+        $ref: '#/components/schemas/PatientAlertSchema'
+      bindings:
+        kafka:
+          key:
+            type: string
+      schemaFormat: application/vnd.aai.asyncapi+json;version=2.0.0
+      contentType: application/json
+channels:
+  alert.patient:
+    subscribe:
+      message:
+        $ref: '#/components/messages/PatientAlertEvent'
+  patient.data.raw.hr:
+    publish:
+      bindings:
+        kafka:
+          topicSubscriptions:
+            - patient.data.raw.hr
+          groupId: PatientHeartRateGroup
+      message:
+        $ref: '#/components/messages/PatientHeartRateEvent'
+  patient.data.raw.bp:
+    publish:
+      bindings:
+        kafka:
+          topicSubscriptions:
+            - patient.data.raw.bp
+          groupId: PatientBloodPressureGroup
+      message:
+        $ref: '#/components/messages/PatientBloodPressureEvent'
+asyncapi: 2.0.0
+info:
+  title: PatientDataProcessor
+  version: 0.0.1
