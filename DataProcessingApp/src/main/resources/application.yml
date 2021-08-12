@@ -15,24 +15,24 @@ spring:
           destination: patient.data.raw.hr
           # add group
           group: patientDataHRGroup
-          consumer:
-            concurrency: 2
+          # consumer:
+          #   concurrency: 2
         patientDataRawHrFunction-out-0:
           destination: patient.data.calculated.hr
           # add partition count if we create this
-          producer:
-            partition-count: 2
+          # producer:
+          #   partition-count: 2
         patientDataRawBpFunction-in-0:
           destination: patient.data.raw.bp
           # add group
           group: patientDataBPGroup
-          consumer:
-            concurrency: 2
+          # consumer:
+          #   concurrency: 2
         patientDataRawBpFunction-out-0:
           destination: patient.data.calculated.bp
           # add partition count if we create this
-          producer:
-            partition-count: 2
+          # producer:
+          #   partition-count: 2
       poller:
         fixed-delay: 15000
 logging:
